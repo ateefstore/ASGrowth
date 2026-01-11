@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ATEEF STORE | Premium Social Media Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-red: #ff0000;
+            --dark-red: #8a0000;
+            --bg-black: #050505;
+            --card-bg: rgba(20, 20, 20, 0.95);
+            --text-white: #ffffff;
+            --text-gray: #b3b3b3;
+            --neon-glow: 0 0 10px rgba(255, 0, 0, 0.7), 0 0 20px rgba(255, 0, 0, 0.5);
+        }
+
+        /* --- GLOBAL RESET (FIXES CUT-OUT ISSUES) --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        html, body {
+            width: 100%;
+            overflow-x: hidden; /* Prevents horizontal scroll completely */
+            background-color: var(--bg-black);
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-white);
+        }
+
+        body {
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(100, 0, 0, 0.2) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(100, 0, 0, 0.2) 0%, transparent 20%);
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+        /* --- HEADER (FULL WIDTH FIX) --- */
+        header {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--primary-red);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: var(--text-white);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+
+        .logo span { color: var(--primary-red); text-shadow: var(--neon-glow); }
+
+        .social-header a {
+            color: var(--text-white);
+            margin-left: 15px;
+            font-size: 1.3rem;
+            transition: 0.3s;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+
+        .hero span { color: var(--primary-red); }
+        .hero p { color: var(--text-gray); margin-bottom: 25px; font-size: 0.9rem; }
+
+        .btn-main {
+            padding: 12px 35px;
+            background: linear-gradient(45deg, var(--dark-red), var(--primary-red));
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-decoration: none;
+            box-shadow: var(--neon-glow);
+            font-size: 0.9rem;
+            display: inline-block;
+        }
+
+        /* --- CONTAINER & TITLES (CENTERING FIX) --- */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px; /* Safe padding for mobile */
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            margin: 40px auto 30px; /* Auto margin centers it perfectly */
+            display: block;
+            width: fit-content;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 3px;
+            background: var(--primary-red);
+            margin-top: 5px;
+            box-shadow: var(--neon-glow);
+        }
+
+        /* --- GRID SYSTEM (MOBILE STACK FIX) --- */
+        .grid {
+            display: flex;
+            flex-direction: column; /* Forces stacking on mobile */
+            gap: 25px;
+        }
+
+        /* Desktop Override */
+        @media (min-width: 768px) {
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+
+        /* --- CARDS --- */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            width: 100%;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 10px;
+        }
+
+        .card-header i { font-size: 1.8rem; margin-right: 15px; }
+        .yt-icon { color: #FF0000; }
+        .insta-icon { color: #E1306C; }
+        .card h3 { font-size: 1.1rem; font-weight: 700; text-transform: uppercase; }
+
+        /* --- PRICING ROWS --- */
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.9rem;
+        }
+        .price-row:last-child { border-bottom: none; }
+        
+        .price {
+            color: var(--primary-red);
+            font-weight: 700;
+            font-size: 1rem;
+            margin-left: 10px;
+            white-space: nowrap;
+        }
+
+        .highlight-text { font-size: 0.8rem; color: var(--text-gray); font-style: italic; }
+
+        /* --- PAYMENT SECTION --- */
+        .payment-section {
+            background: linear-gradient(135deg, #1a0000, #000);
+            border: 2px solid var(--primary-red);
+            border-radius: 15px;
+            padding: 30px 20px;
+            margin: 50px 0;
+            text-align: center;
+        }
+
+        .warning-box {
+            background: rgba(255, 0, 0, 0.15);
+            border: 1px solid var(--primary-red);
+            color: #ffcccc;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .upi-id {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            color: var(--primary-red);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-top: 10px;
+            word-break: break-all;
+            user-select: all;
+            cursor: pointer;
+        }
+
+        /* --- FLOATING CHAT & BACK TO TOP --- */
+        .floating-chat {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-red);
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 26px;
+            color: white;
+            box-shadow: var(--neon-glow);
+            z-index: 1500;
+            text-decoration: none;
+        }
+
+        #backToTop {
+            position: fixed;
+            bottom: 85px;
+            right: 25px;
+            background: rgba(20, 20, 20, 0.9);
+            color: var(--primary-red);
+            border: 1px solid var(--primary-red);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1400;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.3s;
+        }
+        #backToTop.show-btn { opacity: 1; pointer-events: all; }
+
+        /* --- FOOTER & MODAL --- */
+        footer {
+            background: #000;
+            padding: 30px 20px;
+            text-align: center;
+            border-top: 1px solid #333;
+            margin-top: auto;
+        }
+        .footer-links a { color: var(--text-gray); margin: 0 10px; text-decoration: none; font-size: 0.85rem; }
+
+        /* Modal fixes for mobile */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.95);
+        }
+        .modal-content {
+            background-color: #111;
+            margin: 20% auto;
+            padding: 25px;
+            border: 1px solid var(--primary-red);
+            width: 90%;
+            max-width: 500px;
+            border-radius: 10px;
+            color: #ccc;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+        .close { float: right; font-size: 28px; cursor: pointer; }
+
+        /* --- ANIMATION --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="https://superprofile.bio/ateefstore" class="logo">ATEEF<span>STORE</span></a>
+        <div class="social-header">
+            <a href="https://instagram.com/ateefkhan26" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://t.me/ateefkhan26" target="_blank"><i class="fab fa-telegram"></i></a>
+        </div>
+    </header>
+
+    <section class="hero reveal">
+        <h1>Boost Your <span>Social Presence</span></h1>
+        <p>Premium YouTube & Instagram Services. Secure. Fast. Professional.</p>
+        <a href="#services" class="btn-main">View Services</a>
+    </section>
+
+    <div class="container" id="services">
+        
+        <h2 class="section-title reveal">Instagram Services</h2>
+        <div class="grid">
+            <div class="card reveal">
+                <div class="card-header">
+                    <i class="fab fa-instagram insta-icon"></i>
+                    <h3>Trending Services</h3>
+                </div>
+                <div class="price-row">
+                    <span>Reel Views (1000)</span>
+                    <span class="price">₹9</span>
+                </div>
+                <div class="price-row">
+                    <span>Post Views (1000)</span>
+                    <span class="price">₹12</span>
+                </div>
+                <div class="price-row">
+                    <span>Story Views (1000)</span>
+                    <span class="price">₹49</span>
+                </div>
+                <div class="price-row" style="background: rgba(255, 0, 0, 0.1); border-left: 2px solid var(--primary-red); padding-left: 10px;">
+                    <span>1000 Followers</span>
+                    <span class="price">₹180</span>
+                </div>
+                <div class="price-row">
+                    <span>1000 Likes</span>
+                    <span class="price">₹99</span>
+                </div>
+                <div class="price-row">
+                    <span>1000 Shares</span>
+                    <span class="price">₹9</span>
+                </div>
+                <div class="price-row">
+                    <span>1000 Saves</span>
+                    <span class="price">₹39</span>
+                </div>
+                <div class="price-row">
+                    <span>1000 Reposts</span>
+                    <span class="price">₹129</span>
+                </div>
+                <div class="price-row" style="border-top: 1px solid #333; margin-top: 10px; padding-top: 10px;">
+                    <span>1000 Random Comments</span>
+                    <span class="price">₹199</span>
+                </div>
+                <div style="text-align: center; margin-top: 15px;">
+                    <a href="https://instagram.com/ateefkhan26?igshid=text_message=Hello+Ateef+I+want+Insta+Services" class="btn-main" style="font-size: 0.8rem;">Order on Insta</a>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title reveal">YouTube Services</h2>
+        <div class="grid">
+            <div class="card reveal">
+                <div class="card-header">
+                    <i class="fab fa-youtube yt-icon"></i>
+                    <h3>Live Viewers (Gamer Special)</h3>
+                </div>
+                <p class="highlight-text">Prices per 1000 Viewers</p>
+                <div class="price-row">
+                    <span>15 Mins Watching</span>
+                    <span class="price">₹9</span>
+                </div>
+                <div class="price-row">
+                    <span>30 Mins Watching</span>
+                    <span class="price">₹26</span>
+                </div>
+                <div class="price-row">
+                    <span>60 Mins Watching</span>
+                    <span class="price">₹36</span>
+                </div>
+                <div class="price-row">
+                    <span>120 Mins Watching</span>
+                    <span class="price">₹67</span>
+                </div>
+                <div class="price-row">
+                    <span>180 Mins Watching</span>
+                    <span class="price">₹126</span>
+                </div>
+                <div class="price-row">
+                    <span>6 Hours Watching</span>
+                    <span class="price">₹400</span>
+                </div>
+                <div class="price-row">
+                    <span>12 Hours Watching</span>
+                    <span class="price">₹490</span>
+                </div>
+                <div class="price-row">
+                    <span>24 Hours Watching</span>
+                    <span class="price">₹1026</span>
+                </div>
+                <div style="text-align: center; margin-top: 15px;">
+                    <a href="https://t.me/ateefkhan26" class="btn-main" style="font-size: 0.8rem;">Order on Telegram</a>
+                </div>
+            </div>
+
+            <div class="card reveal">
+                <div class="card-header">
+                    <i class="fab fa-youtube yt-icon"></i>
+                    <h3>Trending & Growth</h3>
+                </div>
+                <div class="price-row">
+                    <span>Trending Views (Used by Youtubers)</span>
+                    <span class="price">₹200</span>
+                </div>
+                <div class="price-row">
+                    <span>Indian Likes</span>
+                    <span class="price">₹200</span>
+                </div>
+                <div class="price-row">
+                    <span>Indian Comments (Write Own)</span>
+                    <span class="price">₹926</span>
+                </div>
+                <div class="price-row" style="border-top: 1px solid #333; margin-top: 10px; padding-top: 10px;">
+                    <span>Real Subscribers (Gradual & Safe)</span>
+                    <span class="price">₹2900</span>
+                </div>
+                <p class="highlight-text" style="margin-top:10px;">*Results vary based on channel niche</p>
+                <div style="text-align: center; margin-top: 15px;">
+                    <a href="https://t.me/ateefkhan26" class="btn-main" style="font-size: 0.8rem;">Boost Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="payment-section reveal">
+            <h2 style="font-family: 'Montserrat', sans-serif;">PAYMENT METHOD</h2>
+            
+            <div class="warning-box">
+                <i class="fas fa-exclamation-triangle"></i>
+                WARNING: DO NOT PAY WITHOUT CONVERSATION. FIRST MESSAGE US, CONFIRM SERVICE, THEN RECHARGE.
+            </div>
+
+            <p style="color: #ccc;">Unified Payment Interface (UPI)</p>
+            <div class="upi-id" onclick="copyToClipboard('ateefkhan@fam')">ateefkhan@fam <i class="far fa-copy" style="font-size: 0.8rem; margin-left: 5px;"></i></div>
+            
+            <p style="margin-top: 20px; font-size: 0.8rem; color: #888;">Tap UPI ID to Copy</p>
+        </div>
+    </div>
+
+    <a href="#" id="backToTop" title="Go to top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+    
+    <a href="https://t.me/ateefkhan26" class="floating-chat">
+        <i class="fas fa-comment-dots"></i>
+    </a>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#" id="policyBtn">Privacy Policy</a>
+            <a href="https://t.me/ateefkhan26">Contact Support</a>
+        </div>
+        <p style="margin-top: 20px; color: #555; font-size: 0.8rem;">&copy; 2024 ATEEF STORE. All rights reserved.</p>
+    </footer>
+
+    <div id="privacyModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 style="color: var(--primary-red); margin-bottom: 20px;">Privacy Policy</h2>
+            <p><strong>1. Introduction</strong><br>Welcome to ATEEF STORE. We value your trust and are committed to protecting your privacy. This policy outlines how we handle information.</p>
+            <br>
+            <p><strong>2. Information Collection</strong><br>We do not store personal data on this website. All transactions and details are handled securely via third-party messaging platforms (Telegram/Instagram) directly with the administrator.</p>
+            <br>
+            <p><strong>3. Service Disclaimer</strong><br>We act as a marketing agency helping to boost social proof. We are not directly affiliated with YouTube or Instagram. Services are strictly for promotional purposes.</p>
+            <br>
+            <p><strong>4. Payments & Refunds</strong><br>All services are PAID. Users must contact the administrator before making any payment. Payments made without prior conversation may not be acknowledged immediately. Refunds are processed based on service delivery status.</p>
+            <br>
+            <p><strong>5. Fraud Prevention</strong><br>We do not tolerate fraud. Any attempt to use fake payment screenshots will result in an immediate ban.</p>
+        </div>
+    </div>
+
+    <script>
+        // --- 1. Animation Logic ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach((el) => {
+            observer.observe(el);
+        });
+
+        // --- 2. Back to Top Logic ---
+        const backToTopBtn = document.getElementById("backToTop");
+        window.onscroll = function() {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                backToTopBtn.classList.add("show-btn");
+            } else {
+                backToTopBtn.classList.remove("show-btn");
+            }
+        };
+
+        backToTopBtn.onclick = function(e) {
+            e.preventDefault();
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        // --- 3. Modal Logic (Safe Zone Fix) ---
+        var modal = document.getElementById("privacyModal");
+        var btn = document.getElementById("policyBtn");
+        var span = document.getElementsByClassName("close")[0];
+
+        btn.onclick = function(e) {
+            e.preventDefault();
+            modal.style.display = "block";
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+
+        span.onclick = closeModal;
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // --- 4. Copy UPI Logic ---
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                alert('UPI ID Copied: ' + text);
+            }, function(err) {
+                const textArea = document.createElement("textarea");
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand("Copy");
+                textArea.remove();
+                alert('UPI ID Copied: ' + text);
+            });
+        }
+    </script>
+</body>
+</html>
